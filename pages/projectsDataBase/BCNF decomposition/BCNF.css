@@ -1,0 +1,94 @@
+body {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    border: 2px solid gray;
+    margin: 0;
+    height: 1400px;
+    background-color: #00000059;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    color: #ea1538;
+    text-shadow: 9px 4px 13px #ffffff;
+    font-size: 80px;
+    background-color: aqua;
+    margin-top: -2px;
+
+
+}
+
+
+#atributes {
+    width: 800px;
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+#FDependency2 {
+    width: 700px;
+    height: 200px;
+    font-size: 30px;
+    border-radius: 14px;
+
+}
+
+
+
+button {
+    background: #ea1538;
+    padding: 12px 30px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    width: 186px;
+    transition: .3s;
+
+}
+
+button:hover {
+    background: transparent;
+    border: 2px solid #ea1;
+    color: white;
+    transform: translateY(-10px);
+    cursor: pointer;
+
+}
+
+
+
+
+
+
+#resultblq {
+
+    margin-left: 6px;
+    margin-right: 70%;
+    visibility: hidden;
+    /* display: none; */
+}
+
+#restext {
+    font-size: 20px;
+}
+
+
+
+#Allrolations {
+    visibility: hidden;
+    margin-left: 30px;
+}
+
+#rolationtexts {
+    font-size: 49px;
+    border: 5px solid rgb(88, 43, 160);
+}
+
+#rR {
+    color: rebeccapurple;
+}

@@ -1,0 +1,220 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans',
+        sans-serif;
+}
+
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+        url(../images/ayoub22.jpg);
+    height: 120vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 45px;
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+.logo {
+    color: white;
+    font-size: 20px;
+}
+
+span {
+    color: #ea1;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 11px;
+}
+
+nav ul li a,
+nav ul li a span {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover,
+nav ul li a span:hover {
+    transition: .3s;
+    color: #ea1;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 70px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 25px;
+    color: white;
+    font-size: 16px;
+    line-height: 1.7;
+    /*  font-weight: 500;  */
+}
+
+button {
+    background: #ea1538;
+    padding: 12px 30px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    background: transparent;
+    border: 2px solid #ea1;
+    color: white;
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+.links {
+    top: 90%;
+    left: 10%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: fixed;
+}
+
+
+.links h6 {
+    color: white;
+    font-size: 20px;
+    margin-right: 50px;
+}
+
+.links .social a {
+    display: inline-block;
+    color: white;
+    margin-right: 10px;
+    transition: .3s;
+}
+
+.links .social a:hover {
+    transform: translateY(-10px);
+    font-size: 30px;
+    color: blue;
+
+}
+
+/* ////////////////////////////////////// */
+.her1 {
+    background-image: url(../images/black2.jpg);
+    height: 460vh;
+
+
+}
+
+
+.mn1 {
+    text-align: left;
+    color: aliceblue;
+    /* top: 405px; */
+    /* padding-left: 10%; */
+    padding-top: 200%;
+    /* padding-right: 5%; */
+    /* left: 150px; */
+
+
+}
+
+.mn1 em {
+    color: rgb(12, 112, 29)
+}
+
+
+.mn1 h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+em {
+    color: white;
+    font-size: 40px;
+
+}
+
+/* //////////////////////////////////////////////////// */
+.her2 {
+    background-image: url(../images/blue.jpg);
+    height: 300vh;
+}
+
+footer {
+    font-size: 14px;
+    padding-top: 5%;
+    padding-bottom: 1%;
+    text-align: center;
+    background-color: black;
+
+}
+
+footer p {
+    font-size: 12px;
+    margin: 0px;
+}
+
+.mn2 {
+    top: 30%;
+    /* left: 36%; */
+    text-align: left;
+    /* padding-top: 150%; */
+    margin-top: 65%;
+    margin-left: -13%;
+    margin-right: 5px;
+}
+
+.mn2 h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.item {
+    margin-bottom: 25px;
+    color: white;
+    font-size: 16px;
+    line-height: 1.7;
+}

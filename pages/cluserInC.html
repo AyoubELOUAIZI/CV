@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUSER C</title>
+    <style>
+        h1 {
+            color: rgb(223, 219, 26);
+
+        }
+
+        xmp {
+            color: rgb(51, 121, 185);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span style="color:red"> C source Code</span> Project Calculate The Closure</h1>
+
+    <p>
+        <xmp>
+            #include<stdio.h>
+                #include<stdlib.h>
+                    #include<string.h>
+                        #include<mem.h>
+                            typedef struct {
+                            char gh[26];
+                            char dr[26];
+                            }df;
+                            char* sisaire_Relasion(int nt);
+                            char* allocation_tab_1D(int taill);
+                            void print_Rolation(char*tab,int taill);
+                            void sisaire_DF(char*tab,int n,int tabsz,df*Tfd);
+                            void printAll_FD(char**tab,int taill);
+                            void print_all(char* Rolat,int tailr,df* tfd,int ndf );
+                            void clulate_closure(char* Rolat,int tailr,df* tfd,int ndf);
+
+                            int main(){
+                            char*Rolation;
+                            int nt,ndf,i; //le nomber des atrubutes // dependence fonctionelle
+                            printf("donner le nomber des atrubutes de voter Relation: ");
+                            scanf("%d",&nt);
+                            Rolation=sisaire_Relasion(nt);
+                            print_Rolation(Rolation,nt);
+                            printf("donner le nomber de dependence fonctionnell: ");
+                            scanf("%d",&ndf);
+                            df Tfd[ndf];
+                            sisaire_DF(Rolation,ndf,nt,Tfd);
+                            print_all( Rolation,nt, Tfd,ndf );
+                            clulate_closure(Rolation,nt, Tfd,ndf);
+
+                            return 0;
+                            }
+
+                            void clulate_closure(char* Rolat,int tailr,df* tfd,int ndf){
+                            int i,j,m,k,siz,n;
+                            char atrebute[tailr];
+                            do{
+                            printf("\n enter the atrebute: ");
+                            scanf("%s",atrebute);
+                            for(i=0;i<strlen(atrebute);i++){ for(j=0;j<tailr;j++){ if(atrebute[i]==Rolat[j]) break; }
+                                if(j==tailr){ printf(" '%c' is not in the rolation please try again",atrebute[i]);
+                                break; } } }while(j==tailr); printf(" \nYOU HAVE been entered the atrebute :{%s}+
+                                \n",atrebute); /////////////////////////////////////////////////// siz=strlen(atrebute);
+                                char myone[siz]; strcpy(myone,atrebute); /////////////////////////////////
+                                for(n=0;n<ndf;n++){ for(i=0;i<ndf;i++){ for(j=0;j<strlen(tfd[i].gh);j++){
+                                for(m=0;m<siz;m++){ if(tfd[i].gh[j]==atrebute[m]) break; } if(m==siz){ break; } }
+                                if(j==strlen(tfd[i].gh)){ for(k=0;k<strlen(tfd[i].dr);k++){ for(m=0;m<siz;m++){
+                                if(tfd[i].dr[k]==atrebute[m]) break; } if(m==siz){ atrebute[siz]=tfd[i].dr[k]; siz++; }
+                                }//kkkkkkkkk }//fin """if""" }//la fin de iii// }//la fin de nnnnnnnnnn// char
+                                letters[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+                                char res[26]; int resiz=0; for(i=0;i<26;i++){ for(j=0;j<siz;j++){
+                                if(atrebute[j]==letters[i]){ res[resiz]=letters[i]; resiz+=1; break; } } } printf("\nTHE
+                                results : {%s}+={%c",myone,res[0]); for(i=1;i<resiz;i++){ printf(" ,%c",res[i]); }
+                                printf("}.\n"); for(i=0;i<tailr;i++){ for(j=0;j<resiz;j++){ if(Rolat[i]==res[j]) break;
+                                } if(j==resiz){ printf("\n '%s' is not a key of the relation \n because we did not get
+                                the atribute '%c' AS an example.\n",myone,Rolat[i]);
+                                printf("\n\t************************DONE****************************\n"); return; } }
+                                printf("\n\t'%s' is a key of the relation.\n",myone);
+                                printf("\n\t************************DONE****************************\n"); } void
+                                sisaire_DF(char*tab,int n,int tabsz,df*Tfd) { int i,j,m; for(i=0;i<n;i++) { do{ printf("
+                                \ndonner la parter gauche de dependence %d: ",1+i);
+                        scanf(" \n"); gets(Tfd[i].gh); for(j=0;j<strlen(Tfd[i].gh);j++){ for(m=0;m<tabsz;m++){
+                                if(Tfd[i].gh[j]==tab[m]){ break; } } if(m==tabsz){ printf("\n '%c' is not in the
+                                Rolation \n",Tfd[i].gh[j]); break; } } }while(m==tabsz);
+                                ////////////////////////////////////////// do{ printf(" donner la parter droit de
+                                dependence %d: ",1+i);
+                       gets(Tfd[i].dr);
+                         for(j=0;j<strlen(Tfd[i].dr);j++){
+                            for(m=0;m<tabsz;m++){
+                                if(Tfd[i].dr[j]==tab[m]){
+                                    break;
+                                }
+                            }
+                            if(m==tabsz){
+                                    printf(" \n '%c' is not in the Rolation \n",Tfd[i].dr[j]); break; } }
+                                }while(m==tabsz); printf("\n%s----------->%s",Tfd[i].gh,Tfd[i].dr);
+                                }
+                                printf("\n");
+                                }
+                                ////////////////////////////////////////////////////////////////////////
+                                char* allocation_tab_1D(int taill){
+                                char* Res;
+                                Res=(char*)malloc(sizeof(char)*taill);
+                                return Res;
+                                }
+
+                                char* sisaire_Relasion(int taill){
+                                char
+                                letters[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+                                char*tab;
+                                int i,j,k,repit;
+                                tab=allocation_tab_1D(taill); //la location de la relation
+                                for(i=0;i<taill;i++){ do{ repit=0; printf("\ndonner la trebute %d : ",i+1);
+                     scanf(" \n%c",&tab[i]); for(j=0;j<26;j++){ if(tab[i]==letters[j]) break; } for(k=0;k<i;k++){
+                                    if(tab[k]==tab[i]){ repit=1; printf("\nplease take care!! it is *Repetation* of the
+                                    caracter '%c' ?????",tab[i]); break; } } }while(j==26 || repit==1); } return tab; }
+                                    void print_Rolation(char*tab,int taill){ int i; printf("\nla relation est R( %c ",tab[0]);
+                for(i=1;i<taill;i++)
+                    printf(" ,%c ",tab[i]);
+                    printf(" ).\n"); } ////////////////////////////////////// void printAll_FD(char**tab,int taill){
+                                    int i; printf("la fichage secssed:"); for(i=0;i<2*taill;i+=2){
+                                    printf("\n%s----------->
+                                    %s",tab[i],tab[i+1]);
+                                    }
+                                    }
+
+                                    void print_all(char* Rolat,int tailr,df* tfd,int ndf )
+                                    {
+                                    int i;
+                                    system("pause");
+                                    system("cls");
+                                    printf("\t#############################DATABASE
+                                    PROJECT##############################\n");
+                                    printf("\nAlors la relation est R( %c ",Rolat[0]);
+                                    for(i=1;i<tailr;i++) printf(",%c ",Rolat[i]);
+                    printf(" ),"); printf("Et les dependence fonctionnel son:"); for(i=0;i<ndf;i++){
+                                        printf("\n%s----------->
+                                        %s",tfd[i].gh,tfd[i].dr);
+                                        }
+                                        }
+
+
+        </xmp>
+    </p>
+
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keys in C</title>
+    <style>
+        h1 {
+            color: rgb(223, 219, 26);
+
+        }
+
+        xmp {
+            color: rgb(51, 121, 185);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span style="color:red"> C source Code</span> Project Finding the candidate Keys</h1>
+    <xmp>
+        #include<stdio.h>
+            #include<stdlib.h>
+                #include<string.h>
+                    #include<mem.h>
+                        typedef struct {
+                        char gh[26];
+                        char dr[26];
+                        }df;
+                        char* sisaire_Relasion(int nt);
+                        char* allocation_tab_1D(int taill);
+                        void print_Rolation(char*tab,int taill);
+                        void sisaire_DF(char*tab,int n,int tabsz,df*Tfd);
+                        void printAll_FD(char**tab,int taill);
+                        void print_all(char* Rolat,int tailr,df* tfd,int ndf );
+                        void find_candidatekey(char* Rolat,int tailr,df* tfd,int ndf);
+                        void testCombien_LeftMidl(char* Rolation,int tailr,char* left,int leftsiz,char* midl,int siz,df*
+                        tfd,int
+                        ndf);
+                        char**allocatiomatrix_tab_2d(int taill);
+                        void print_Candidate_Key(char** tab,int taill);
+
+
+                        int main(){
+                        char*Rolation;
+                        int nt,ndf; //le nomber des atrubutes // dependence fonctionelle
+                        printf("donner le nomber des atrubutes de voter Relation: ");
+                        scanf("%d",&nt);
+                        Rolation=sisaire_Relasion(nt);
+                        print_Rolation(Rolation,nt);
+                        printf("donner le nomber de dependence fonctionnell: ");
+                        scanf("%d",&ndf);
+                        df Tfd[ndf];
+                        sisaire_DF(Rolation,ndf,nt,Tfd);
+                        print_all( Rolation,nt, Tfd,ndf );
+                        find_candidatekey( Rolation, nt, Tfd, ndf);
+
+                        return 0;
+                        }
+                        void print_Candidate_Key(char** tab,int taill){
+                        int i;
+                        printf("\t\t===>C.KEY={%s",tab[0]);
+                        for(i=1;i<taill;i++){ printf(" ,%s",tab[i]); } printf("}."); } int clulate_closure(char*
+                            Rolat,int tailr,df* tfd,int ndf,char* atrebute,int siz ){ int i,j,m,k,n;
+                            ///////////////////////////////// // char myone[8]; // for(i=0;i<siz;i++){ //
+                            myone[i]=atrebute[i]; // } // myone[siz]='\0' ; // static int nkey=1; //
+                            printf("\n-------------->%d:%s",nkey,myone);
+                            /////////////////////////////////
+                            for(n=0;n<ndf;n++){ for(i=0;i<ndf;i++){ for(j=0;j<strlen(tfd[i].gh);j++){
+                                for(m=0;m<siz;m++){ if(tfd[i].gh[j]==atrebute[m]) break; } if(m==siz){ break; } }
+                                if(j==strlen(tfd[i].gh)){ for(k=0;k<strlen(tfd[i].dr);k++){ for(m=0;m<siz;m++){
+                                if(tfd[i].dr[k]==atrebute[m]) break; } if(m==siz){ atrebute[siz]=tfd[i].dr[k]; siz++; }
+                                }//kkkkkkkkk }//fin """if""" }//la fin de iii// }//la fin de nnnnnnnnnn// char
+                                letters[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+                                char res[26]; int resiz=0; // nomber des element de res nombre des atrebute that we add
+                                // for(i=0;i<26;i++){ for(j=0;j<siz;j++){ if(atrebute[j]==letters[i]){
+                                res[resiz]=letters[i]; resiz+=1; break; } } } for(i=0;i<tailr;i++){
+                                for(j=0;j<resiz;j++){ if(Rolat[i]==res[j]) break; } if(j==resiz){ return 0; } } //
+                                printf("\nTHE final results ORDER BY alphabetes: {%s}+={%c",myone,res[0]); //
+                                for(i=1;i<resiz;i++){ // printf(" ,%c",res[i]); // } // printf("}."); //
+                                printf("\n\t'%s' is a key of the relation.\n",myone); /// nkey+=1; return 1; }
+                                ////////////// /////////////////////////////////////////////////////////////////// void
+                                find_candidatekey(char* Rolat,int tailr,df* tfd,int ndf){ int i,j,k,siz=0,siz0=0; char
+                                atrebuts[tailr+3]; char atrebuts2[tailr+6]; // all the atrebute in appers in left side
+                                for(i=0;i<tailr;i++){ for(k=0;k<ndf;k++){ for(j=0;j<strlen(tfd[k].gh);j++){
+                                if(Rolat[i]==tfd[k].gh[j]){ atrebuts[siz]=Rolat[i]; siz+=1; // COUNT SIZ // break; } }
+                                if(j!=strlen(tfd[k].gh)) break; } } printf("\nThe atributes in the left and midle FD : ");
+    for(i=0;i<siz;i++)
+    printf(" %c ",atrebuts[i]);
+    /////////////////////////////////////////
+    
+////////////////////////////////////////////////////////MIDL
+    char midl[siz];
+    char midl2[siz+4];
+    int siz2=0;
+     for(i=0;i<siz;i++){
+        for(k=0;k<ndf;k++){
+           for(j=0;j<strlen(tfd[k].dr);j++){
+            if(atrebuts[i]==tfd[k].dr[j]){
+                midl[siz2]=atrebuts[i];
+                siz2+=1;
+                break;
+            }
+        }
+        if(j!=strlen(tfd[k].dr)) break;
+        }
+    }
+     printf(" \nThe atributes in the midle are: ");//////////////
+    for(i=0;i<siz2;i++){
+    printf(" %c ",midl[i]);
+        midl2[i]=midl[i];
+    }
+  ////////////////////////////////////////////LEFT TABLE
+    int  siz3=siz-siz2;
+    char left[siz3];          
+    k=0;
+        for(j=0;j<siz;j++){
+             for(i=0;i<siz2;i++){
+          if(atrebuts[j]==midl2[i]) break;             
+        }
+        if(i==siz2){
+            left[k]=atrebuts[j];
+            k++;
+        }          
+    }
+    left[k]='\0';
+    
+     printf(" \nThe atributes ONLY in the left MUST BE all part of the key are: ");
+        if(siz3==0)
+          printf(" it is null"); for(i=0;i<siz3;i++) printf("%c ",left[i]);
+    printf(" \n_____________________________________________________________\n");
+                                ///////////////////////////////////////////// // all all this is the biger after
+                                rolation the atrebute appers in left side or right side for(i=0;i<tailr;i++){
+                                for(j=0;j<siz;j++){ if(Rolat[i]==atrebuts[j]){ atrebuts2[siz0]=Rolat[i]; siz0+=1; break;
+                                } }if(j==siz){ for(k=0;k<ndf;k++){ for(j=0;j<strlen(tfd[k].dr);j++){
+                                if(Rolat[i]==tfd[k].dr[j]){ atrebuts2[siz0]=Rolat[i]; siz0+=1; break; } }
+                                if(Rolat[i]==tfd[k].dr[j]) break; } } } //printf("\nThe atributes in the left or left
+                                and right of FD EVEN and if it is not in df: ");
+    // for(i=0;i<siz0;i++)
+    // printf(" %c ",atrebuts2[i]);  // I DONOT THINK I need to now about them //
+ //-----------------------------------------------------------------------------------------------------//
+    int siz4=siz0-siz;
+    printf(" siz4=%d AND siz0=%d AND siz=%d",siz4,siz0,siz); char copyleft[25]; //Atrebutes not in fds but they are in
+                                rolation// if(siz4>0){ // IF (all the atributes in rolation are in FD){siz4==0}//
+                                for(i=0;i<tailr;i++){ for(j=0;j<siz0;j++){ if(Rolat[i]==atrebuts2[j]) break; }
+                                    if(j==siz0){ left[siz3]=Rolat[i]; siz3++; } } left[siz3]='\0' ; // printf("\nnew
+                                    left with atrebutes not found in fds :"); // for(i=0;i<siz3;i++) // printf("%c ",left[i]);
+    // printf(" \n_____________________________________________________________\n"); } strcpy(copyleft,left); // NOW WE
+                                    FINISH FULLING MINI TABLES int somC=0,contin=1; if(siz3>0)
+                                    if(clulate_closure(Rolat,tailr,tfd,ndf,left,siz3)){
+                                    printf("\t\t===>C.KYA={%s}.",copyleft);
+                                    printf("\n\t************************DONE****************************");
+                                    contin=0;
+                                    }
+
+                                    if(contin==1){
+                                    testCombien_LeftMidl(Rolat,tailr,left,siz3,midl,siz2,tfd,ndf);
+                                    }
+                                    }
+                                    ///////////////////////////////////////////////////////////////////////////////////////////////
+                                    void sisaire_DF(char*tab,int n,int tabsz,df*Tfd)
+                                    {
+                                    int i,j,m;
+                                    for(i=0;i<n;i++) { do{ printf(" \ndonner la parter gauche de dependence %d: ",1+i);
+            scanf(" \n"); gets(Tfd[i].gh); for(j=0;j<strlen(Tfd[i].gh);j++){ for(m=0;m<tabsz;m++){
+                                        if(Tfd[i].gh[j]==tab[m]){ break; } } if(m==tabsz){ printf("\n '%c' is not in the
+                                        Rolation \n",Tfd[i].gh[j]); break; } } }while(m==tabsz);
+                                        ////////////////////////////////////////// do{ printf(" donner la parter droit
+                                        de dependence %d: ",1+i);
+           gets(Tfd[i].dr);
+             for(j=0;j<strlen(Tfd[i].dr);j++){
+                for(m=0;m<tabsz;m++){
+                    if(Tfd[i].dr[j]==tab[m]){
+                        break;
+                    }
+                }
+                if(m==tabsz){
+                        printf(" \n '%c' is not in the Rolation \n",Tfd[i].dr[j]); break; } } }while(m==tabsz);
+                                        printf("\n%s----------->%s",Tfd[i].gh,Tfd[i].dr);
+                                        }
+                                        printf("\n");
+                                        }
+                                        //////////////////////////////////////////
+                                        char**allocatiomatrix_tab_2d(int taill){
+                                        char** res;
+                                        int i;
+                                        res=(char**)malloc(sizeof(char*)*taill);
+                                        if(res==NULL){
+                                        printf("error de allocation char** ");
+                                        exit(33);
+                                        }
+                                        for(i=0;i<taill;i++){ res[i]=(char*)malloc(sizeof(char)*taill);
+                                            if(res[i]==NULL){ printf("error dallocation res[i]"); exit(33); } } return
+                                            res; }
+                                            ////////////////////////////////////////////////////////////////////////
+                                            char* allocation_tab_1D(int taill){ char* Res;
+                                            Res=(char*)malloc(sizeof(char)*taill); return Res; } char*
+                                            sisaire_Relasion(int taill){ char
+                                            letters[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+                                            char*tab; int i,j,k,repit; tab=allocation_tab_1D(taill); //la location de la
+                                            relation for(i=0;i<taill;i++){ do{ repit=0; printf("\ndonner la trebute %d : ",i+1);
+         scanf(" \n%c",&tab[i]); for(j=0;j<26;j++){ if(tab[i]==letters[j]) break; } for(k=0;k<i;k++){
+                                            if(tab[k]==tab[i]){ repit=1; printf("\nplease take care!! it is *Repetation*
+                                            of the caracter '%c' ?????",tab[i]); break; } } }while(j==26 || repit==1); }
+                                            return tab; } void print_Rolation(char*tab,int taill){ int i; printf("\nla
+                                            relation est R( %c ",tab[0]);
+    for(i=1;i<taill;i++)
+        printf(" ,%c ",tab[i]);
+        printf(" ).\n"); } ////////////////////////////////////// void printAll_FD(char**tab,int taill){ int i;
+                                            printf("la fichage secssed:"); for(i=0;i<2*taill;i+=2){
+                                            printf("\n%s----------->
+                                            %s",tab[i],tab[i+1]);
+                                            }
+                                            }
+
+                                            void print_all(char* Rolat,int tailr,df* tfd,int ndf )
+                                            {
+                                            int i;
+                                            system("pause");
+                                            system("cls");
+                                            printf("\t#############################DATABASE
+                                            PROJECT##############################\n");
+                                            printf("\nAlors la relation est R( %c ",Rolat[0]);
+                                            for(i=1;i<tailr;i++) printf(",%c ",Rolat[i]);
+        printf(" ),"); printf("Et les dependence fonctionnel son:"); for(i=0;i<ndf;i++){ printf("\n%s----------->
+                                                %s",tfd[i].gh,tfd[i].dr);
+                                                }
+                                                }
+
+                                                void testCombien_LeftMidl(char* Rolation,int tailr,char* left,int
+                                                leftsiz,char*
+                                                midl,int siz,df* tfd,int ndf){
+                                                //akhir
+                                                int i,j,k,cas,siztab=0,contin=1;
+                                                char tab[30];
+                                                char tmptab2[1][26];
+                                                char** tmptab;
+                                                tmptab=allocatiomatrix_tab_2d(26);
+                                                int tmptabsiz=0;
+
+                                                for(i=0;i<leftsiz;i++) tab[i]=left[i]; tab[leftsiz]='\0' ; int idx[26];
+                                                    for(cas=1;cas<=siz;cas++) { idx[cas-1]=0; for(i=cas;i<26;i++)
+                                                    idx[i]=idx[i-1]-1; ///////////////////////////////////////////////
+                                                    for( ;idx[25]<siz;idx[25]++){ for(idx[24]=idx[25]+1
+                                                    ;idx[24]<siz;idx[24]++){
+                                                    for(idx[23]=idx[24]+1;idx[23]<siz;idx[23]++){ for(
+                                                    idx[22]=idx[23]+1;idx[22]<siz;idx[22]++){
+                                                    for(idx[21]=idx[22]+1;idx[21]<siz;idx[21]++){
+                                                    for(idx[20]=idx[21]+1;idx[20]<siz;idx[20]++){
+                                                    for(idx[19]=idx[20]+1;idx[19]<siz;idx[19]++){
+                                                    for(idx[18]=idx[19]+1;idx[18]<siz;idx[18]++){
+                                                    for(idx[17]=idx[18]+1;idx[17]<siz;idx[17]++){
+                                                    for(idx[16]=idx[17]+1;idx[16]<siz;idx[16]++){
+                                                    for(idx[15]=idx[16]+1;idx[15]<siz;idx[15]++){
+                                                    for(idx[14]=idx[15]+1;idx[14]<siz;idx[14]++){
+                                                    for(idx[13]=idx[14]+1;idx[13]<siz;idx[13]++){
+                                                    for(idx[12]=idx[13]+1;idx[12]<siz;idx[12]++){
+                                                    for(idx[11]=idx[12]+1;idx[11]<siz;idx[11]++){
+                                                    for(idx[10]=idx[11]+1;idx[10]<siz;idx[10]++){
+                                                    for(idx[9]=idx[10]+1;idx[9]<siz;idx[9]++){
+                                                    for(idx[8]=idx[9]+1;idx[8]<siz;idx[8]++){
+                                                    for(idx[7]=idx[8]+1;idx[7]<siz;idx[7]++){
+                                                    for(idx[6]=idx[7]+1;idx[6]<siz;idx[6]++){
+                                                    for(idx[5]=idx[6]+1;idx[5]<siz;idx[5]++){
+                                                    for(idx[4]=idx[5]+1;idx[4]<siz;idx[4]++){
+                                                    for(idx[3]=idx[4]+1;idx[3]<siz;idx[3]++){
+                                                    for(idx[2]=idx[3]+1;idx[2]<siz;idx[2]++){
+                                                    for(idx[1]=idx[2]+1;idx[1]<siz;idx[1]++){
+                                                    for(idx[0]=idx[1]+1;idx[0]<siz;idx[0]++){
+                                                    for(i=leftsiz;i<cas+leftsiz;i++) tab[i]=midl[idx[cas+leftsiz-i-1]];
+                                                    tab[cas+leftsiz]='\0' ; strcpy(tmptab2[0],tab); printf("%s | ",tab);           
+                if(clulate_closure(Rolation,tailr,tfd,ndf,tab,cas+leftsiz)){
+                      strcpy(tmptab[tmptabsiz],tmptab2[0]);
+                          tmptabsiz+=1;
+                      contin=0;    
+                     // printf(" con=%d AND CAS-1=%d AND idx[%d]=%d AND idx[0]=%d and
+                                                    siz=%d\n",contin,cas-1,cas-1,idx[cas-1],idx[0],siz); }
+                                                    if(idx[cas-1]==(siz-1)-(cas-1) && idx[0]==siz-1){ // (siz-1)-(cas-1)
+                                                    //La dirnier nomber moin (le nomber des element moins1 pour le luit)
+                                                    if(contin==0){ print_Candidate_Key(tmptab,tmptabsiz);
+                                                    printf("\n\t************************DONE****************************");
+                                                    return; }
+                                                    printf("\n_____________________________________________________________\n");
+                                                    } } if(cas==1) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==2)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==3) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==4) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==5) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==6)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==7) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==8) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==9) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==10)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==11) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==12) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==13) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==14)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==15) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==16) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==17) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==18)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==19) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==20) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==21) for(i=cas;i<26;i++) idx[i]=siz; } if(cas==22)
+                                                    for(i=cas;i<26;i++) idx[i]=siz; } if(cas==23) for(i=cas;i<26;i++)
+                                                    idx[i]=siz; } if(cas==24) for(i=cas;i<26;i++) idx[i]=siz; }
+                                                    if(cas==25) for(i=cas;i<26;i++) idx[i]=siz; } } } </xmp>
+</body>
+
+</html>

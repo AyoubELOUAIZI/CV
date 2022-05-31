@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invers Matrix In C</title>
+    <style>
+        h1 {
+            color: rgb(223, 219, 26);
+
+        }
+
+        xmp {
+            color: rgb(51, 121, 185);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span style="color:red"> C source Code</span> Project invers <span style="color:green;"> Matrix</span></h1>
+
+    <p>
+        <xmp>
+            #include <stdio.h>
+                #include <stdlib.h>
+                    #include <math.h>
+                        #include <time.h>
+                            int **Alloc_Table(int taill);
+                            void printboard(int **tab, int taill);
+                            void saisir_Table2(int **tab, int taill);
+                            int **mat_elimini(int **tab, int taill, int nbl, int nbc);
+                            int det2_2(int **tab);
+                            int det_n_by_n(int **tab, int taill);
+                            int nbr_de_allocation = 0;
+                            int some_de_allocation = 0;
+                            float **xtimes_mat(float x, int **mat, int taill);
+                            int **Comatrice(int **mat, int taill);
+                            int **mat_tronsposi(int **mat, int taill);
+                            float **Alloc_float_Table(int taill);
+                            void print_float_board(float **tab, int taill);
+
+                            float **invers_matric(int **mat, int taill);
+
+                            ///////////////////////////////////////////////////////////////////////////////////
+                            int main()
+                            {
+                            int **T;
+                            int n;
+                            do
+                            {
+                            printf("donner la taill de matric : ");
+                            scanf("%d", &n);
+                            } while (n <= 1); srand(time(0)); T=Alloc_Table(n); saisir_Table2(T, n); printf(" la matrice
+                                donner est \n"); printboard(T, n); printf("\nla determinant est %d\n", det_n_by_n(T,
+                                n)); if (det_n_by_n(T, n) !=0) { printf(" \nvoila la comatrice de la matrice donner ");
+                printboard(Comatrice(T, n), n);
+                printf(" la matric transposi de comatrice de la matrice donner ");
+                printboard(mat_tronsposi(Comatrice(T, n), n), n);
+                printf(" voila l'invers de la matrice donner\n ");
+                print_float_board(invers_matric(T, n), n);
+            }
+            else
+            {
+                printf(" $$$ domage la determinant est null donc la matrice est PAS inversible \n"); } printf("\n $$$
+                                combien de fois on a fait la location d'un tableau EST ||%d|| fois", nbr_de_allocation);
+                                // cette 2 nomber doit eter constante printf("\n $$$ La Proximation de la allocation on
+                                a utiluse est : %d Octe'", some_de_allocation); // si n est constante return 0; }
+                                //////////////////////////////////////////////////////////////////// int
+                                **Alloc_Table(int taill) { int **R, i; R=(int **)malloc(sizeof(int *) * taill); if
+                                (R==NULL) { printf("broblem de la location ");
+                exit(99);
+            }
+            for (i = 0; i < taill; i++)
+            {
+                R[i] = (int *)malloc(sizeof(int) * taill);
+                if (R[i] == NULL)
+                {
+                    printf(" broblem de la location ");
+                    exit(99 + i);
+                }
+            }
+            nbr_de_allocation++;                               ////////////////////
+            some_de_allocation += sizeof(int) * taill * taill; //////////////////////
+            return R;
+        }
+        //////////////////////////////////////////////////////////////////////////
+        void printboard(int **tab, int taill)
+        {
+            int i, j;
+            printf(" \n\n"); for (i=0; i < taill; i++) { printf(" |"); for (j=0; j < taill; j++) {
+                                printf("%s%.2d ", (tab[i][j] < 0) ? " " : " ", tab[i][j]);
+                }
+                printf(" |\n"); } } /////////////////////////////////////////////////////////////////////////// void
+                                saisir_Table2(int **tab, int taill) { int i, j; for (i=0; i < taill; i++) for (j=0; j <
+                                taill; j++) tab[i][j]=rand() % 3; }
+                                ///////////////////////////////////////////////////////////////////////////////// int
+                                **mat_elimini(int **tab, int taill, int nbl, int nbc) { int **Tmin; int i, j, k, t;
+                                Tmin=Alloc_Table(taill - 1); k=0; for (i=0; i < taill; i++) { t=0; for (j=0; j < taill;
+                                j++) { if (i !=nbl && j !=nbc) { Tmin[k][t]=tab[i][j]; t++; if (t==taill - 1) { k++; } }
+                                } } return Tmin; }
+                                //////////////////////////////////////////////////////////////////////// int det2_2(int
+                                **tab) { return tab[0][0] * tab[1][1] - tab[1][0] * tab[0][1]; }
+                                //////////////////////////////////////////////////////////////// int det_n_by_n(int
+                                **tab, int taill) { int res=0; int j=0; if (taill==1) { res=tab[0][0]; return res; } if
+                                (taill==2) { res=det2_2(tab); return res; } for (j=0; j < taill; j++) { res +=(tab[0][j]
+                                * pow(-1, 0 + j) * det_n_by_n(mat_elimini(tab, taill, 0, j), taill - 1)); } return res;
+                                } float **xtimes_mat(float x, int **mat, int taill) { int i, j; float **xMat;
+                                xMat=Alloc_float_Table(taill); for (i=0; i < taill; i++) { for (j=0; j < taill; j++) {
+                                xMat[i][j]=x * mat[i][j]; } } return xMat; } int **Comatrice(int **mat, int taill) { int
+                                i, j; int **coMat; coMat=Alloc_float_Table(taill); for (i=0; i < taill; i++) { for (j=0;
+                                j < taill; j++) { coMat[i][j]=pow(-1, i + j) * det_n_by_n(mat_elimini(mat, taill, i, j),
+                                taill - 1); } } return coMat; } int **mat_tronsposi(int **mat, int taill) { int i, j;
+                                int **M_tr; // diclaration de matrice tronspose// M_tr=Alloc_Table(taill); // la
+                                location de matrice tronspose for (i=0; i < taill; i++) { for (j=0; j < taill; j++) {
+                                M_tr[i][j]=mat[j][i]; } } return M_tr; } float **Alloc_float_Table(int taill) { float
+                                **Res; int i; Res=(float **)malloc(sizeof(float *) * taill); if (Res==NULL) {
+                                printf("broblem de la location ");
+                exit(33);
+            }
+            for (i = 0; i < taill; i++)
+            {
+                Res[i] = (float *)malloc(sizeof(float) * taill);
+                if (Res[i] == NULL)
+                {
+                    printf(" broblem de la location de table float ");
+                    exit(33 + i);
+                }
+            }
+            nbr_de_allocation++;                                 ///////////////////////////
+            some_de_allocation += sizeof(float) * taill * taill; //////////////////////
+        
+            return Res;
+        }
+        void print_float_board(float **tab, int taill)
+        {
+            int i, j;
+            for (i = 0; i < taill; i++)
+            {
+                printf(" \n |"); for (j=0; j < taill; j++) { printf("%s%.2f ", (tab[i][j] < 0) ? " " : " ", tab[i][j]);
+                }
+                printf(" |"); } } float **invers_matric(int **mat, int taill) { return xtimes_mat(1 /
+                                (float)det_n_by_n(mat, taill), (mat_tronsposi(Comatrice(mat, taill), taill)), taill); }
+                                </xmp>
+    </p>
+
+</body>
+
+</html>
